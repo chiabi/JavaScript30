@@ -82,6 +82,9 @@
       const secondsDegrees = ((seconds / 60) * 360) + 90;
       console.log(secondsDegrees)
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      secondHand.addEventListener('transitionend', e => {
+        secondHand.style.transform === 'rotate(440deg)'
+      })
 
       // console.log(seconds)
       const mins = now.getMinutes();
