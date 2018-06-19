@@ -99,6 +99,48 @@
   </div>
 
 <script>
+// const checkboxs = document.querySelectorAll('.checkbox');
+// let checked;
+// checkboxs.forEach((checkbox, index) => {
+//   checkbox.addEventListener('click', (e) => {
+//     checked = index;
+//   })
+// })
+// document.addEventListener('keydown', (e) => {
+//   if(e.keyCode === 16) {
+//     checkboxs.forEach((checkbox, index) => {
+//       checkbox.addEventListener('click', (e) => {
+//         const max = Math.max(checked, index);
+//         const min = Math.min(checked, index);
+//         const arr = Array.prototype.slice(min, max).call(checkboxs);
+//         console.log(arr)
+//       })
+//     })
+//   }
+// });
+
+// 
+const checkboxes = document.querySelectorAll('.inbox [type="checkbox"]');
+
+let lastChecked;
+
+function handleCheck(e) {
+  let inBetween = false;
+  if (e.shiftKey && this.checked) {
+     checkboxes.forEach(checkbox => {
+       console.log(checkbox);
+       if(checkbox === this || checkbox === lastChecked) {
+         inBetween = !inBetween;
+         console.log('starting')
+       }
+       if(inBetween) {
+         checkbox.checked = true;
+       }
+     });
+  }
+  lastChecked = this;
+}
+checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
 </script>
 </body>
 </html>
